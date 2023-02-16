@@ -47,7 +47,6 @@
         });
     }
     renderScene() {
-        console.log("rendering")
         this.clear();
         this.printCube();
     }
@@ -63,6 +62,7 @@
                 point.x=array[0];
                 point.y=array[1];
                 point.z=array[2];
+                //почистить код от повторов (аналогничный код для зума)
             });
             this.renderScene();
         });
