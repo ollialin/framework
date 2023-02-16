@@ -11,7 +11,7 @@
         });
         this.componentList = [
             new Target({ id: 'Target', parent: this.id, template: template.Target }),
-            new Component({ id: 'Graph', parent: this.id }),
+            new Graph3D({ id: 'Graph3D', parent: this.id, template: template.Graph3D }),
             new Component({ id: 'component3', parent: this.id }),
             new Component({ id: 'component4', parent: this.id })
         ];
