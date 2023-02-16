@@ -7,13 +7,13 @@
         this.canvas.height = height;
 
         this.WIN = WIN;
-        // const { wheel, mouseup, mousedown, mousemove, mouseleave } = callbacks;
+        const { wheel, mouseup, mousedown, mousemove, mouseleave } = callbacks;
 
-        // this.canvas.addEventListener('wheel', wheel);
-        // this.canvas.addEventListener('mousedown', mousedown);
-        // this.canvas.addEventListener('mouseup', mouseup);
-        // this.canvas.addEventListener('mousemove', mousemove);
-        // this.canvas.addEventListener('mouseleave', mouseleave);
+        this.canvas.addEventListener('wheel', wheel);
+        this.canvas.addEventListener('mousedown', mousedown);
+        this.canvas.addEventListener('mouseup', mouseup);
+        this.canvas.addEventListener('mousemove', mousemove);
+        this.canvas.addEventListener('mouseleave', mouseleave);
     }
     xs(x) { const r = (x - this.WIN.LEFT) * this.canvas.width / this.WIN.WIDTH; return r }
     ys(y) { return (this.WIN.HEIGHT + this.WIN.BOTTOM - y) * this.canvas.height / this.WIN.HEIGHT; }
@@ -73,4 +73,5 @@
             this.context.stroke();
         }
     }
+
 }

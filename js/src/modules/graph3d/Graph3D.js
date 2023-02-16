@@ -14,7 +14,9 @@
             WIN: this.WIN,
             width: 700,
             height: 700,
-            callbacks: null
+            callbacks: {
+                
+            }
         });
         this.math3D = new Math3D({ WIN: this.WIN });
         this.cube = [
@@ -52,9 +54,7 @@
                     [Math.sin(0.261799), 0, Math.cos(0.261799), 0],
                     [0, 0, 0, 1]],
                     [point.x, point.y, point.z, 1])
-                point.x=array[0];
-                point.y=array[1];
-                point.z=array[2];
+                point.makeFromArray(array);
                 //почистить код от повторов (аналогничный код для зума)
             });
             this.renderScene();

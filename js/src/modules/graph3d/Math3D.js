@@ -32,8 +32,6 @@
             [0, 0, delta, 0],
             [0, 0, 0, 1]],
             [point.x, point.y, point.z, 1]);
-        point.x = array[0];
-        point.y = array[1];
-        point.z = array[2];
+        point.makeFromArray(array);
     }
 }
