@@ -1,7 +1,6 @@
 ﻿class Graph3D extends Component {
     constructor(params) {
         super(params);
-        // console.log(params.id);
         this.WIN = {
             LEFT: -10,
             BOTTOM: -10,
@@ -32,12 +31,6 @@
     clear() {
         this.graph.clear();
     }
-    // printCube() {
-    //     this.cube.forEach(point => this.graph.point(
-    //         this.math3D.xs(point),
-    //         this.math3D.ys(point)
-    //     ));
-    // }
     printCube() {
         this.cube.forEach(point => {
             this.graph.point(
