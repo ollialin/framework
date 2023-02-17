@@ -28,7 +28,6 @@
             new Point(-10, 10, -10),
             new Point(-10, -10, -10),
             new Point(10, -10, -10)];
-
         this.cubeEdges = [
             new Edge(0, 1),
             new Edge(0, 3),
@@ -63,32 +62,58 @@
                 this.math3D.xs(this.cube[edge.p2]),
                 this.math3D.ys(this.cube[edge.p2]),
                 '#1a2b3c',
-                2,
+                3,
                 false);
         })
     }
     renderScene() {
         this.clear();
-        this.printCube();
         this.printCubeEdges();
+        this.printCube();
     }
     addEventListener() {
-        const yscale = document.getElementById("YRotation-scale");
-        let degYAngle = yscale.value;
-        yscale.addEventListener('input', () => {
-            const radDeltaAngle = (yscale.value - degYAngle) * Math.PI / 180;
-            degYAngle = yscale.value;
+        let canMove = false;
+        document.getElementById('canvas3d').addEventListener('wheel', (event) => {
+            const delta = 1 + event.wheelDelta / 1200;
+            console.log(delta);
             this.cube.forEach(point => {
-                const array = this.math3D.mult([
-                    [Math.cos(radDeltaAngle), 0, -Math.sin(radDeltaAngle), 0],
-                    [0, 1, 0, 0],
-                    [Math.sin(radDeltaAngle), 0, Math.cos(radDeltaAngle), 0],
-                    [0, 0, 0, 1]],
-                    [point.x, point.y, point.z, 1])
-                point.makeFromArray(array);
-                //почистить код от повторов (аналогничный код для зума)
+                this.math3D.zoom(delta, point);
+                console.log(point);
             });
             this.renderScene();
+        })
+        document.getElementById('canvas3d').addEventListener('mouseleave', () => canMove = false);
+        document.getElementById('canvas3d').addEventListener('mousedown', () => canMove = true);
+        document.getElementById('canvas3d').addEventListener('mouseup', () => canMove = false);
+        document.getElementById('canvas3d').addEventListener('mousemove', (event) => {
+            if (canMove) {
+                const { movementX, movementY } = event;
+                this.rotateY(movementX / 180);
+                this.rotateX(movementY / 180);
+                this.renderScene();
+            }
+        });
+    }
+    rotateY(deltaAngle) {
+        this.cube.forEach(point => {
+            const array = this.math3D.mult([
+                [Math.cos(deltaAngle), 0, -Math.sin(deltaAngle), 0],
+                [0, 1, 0, 0],
+                [Math.sin(deltaAngle), 0, Math.cos(deltaAngle), 0],
+                [0, 0, 0, 1]],
+                [point.x, point.y, point.z, 1]);
+            point.makeFromArray(array);
+        });
+    }
+    rotateX(deltaAngle) {
+        this.cube.forEach(point => {
+            const array = this.math3D.mult([
+                [1, 0, 0, 0],
+                [0, Math.cos(deltaAngle), Math.sin(deltaAngle), 0],
+                [0, -Math.sin(deltaAngle), Math.cos(deltaAngle), 0],
+                [0, 0, 0, 1]],
+                [point.x, point.y, point.z, 1]);
+            point.makeFromArray(array);
         });
     }
 }

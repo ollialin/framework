@@ -72,5 +72,4 @@
             this.context.stroke();
         }
     }
-
 }
