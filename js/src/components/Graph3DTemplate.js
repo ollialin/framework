@@ -1,7 +1,6 @@
 ﻿Template.prototype.Graph3D = () =>
 `
     <canvas id="canvas3d"></canvas>
-    <button id="rotate-right">Rotate right</button>
-    <input type="range" id="YRotation-scale" min="0" max="2*Math.PI">
+    <input type="range" id="YRotation-scale" min="-180" max="180" step="0.5">
 `
 //дописать шкалу для вращения

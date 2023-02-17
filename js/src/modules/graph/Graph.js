@@ -15,7 +15,7 @@
         this.canvas.addEventListener('mousemove', mousemove);
         this.canvas.addEventListener('mouseleave', mouseleave);
     }
-    xs(x) { const r = (x - this.WIN.LEFT) * this.canvas.width / this.WIN.WIDTH; return r }
+    xs(x) { return (x - this.WIN.LEFT) * this.canvas.width / this.WIN.WIDTH }
     ys(y) { return (this.WIN.HEIGHT + this.WIN.BOTTOM - y) * this.canvas.height / this.WIN.HEIGHT; }
 
     sx(x) { return x * this.WIN.WIDTH / this.canvas.width; }
@@ -39,7 +39,6 @@
         this.context.stroke();
         this.context.closePath();
         this.context.setLineDash([]);
-        console.log(this.xs(x1), x1)
     }
     point(x, y, color = '#1a2b3c', size = 3) {
         this.context.beginPath();
